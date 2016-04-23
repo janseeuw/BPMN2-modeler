@@ -1,0 +1,29 @@
+package be.ugent.intec.ibcn.dbase.tooling;
+
+import org.eclipse.bpmn2.Process;
+import org.eclipse.bpmn2.FlowElement;
+import org.eclipse.bpmn2.FlowNode;
+import org.eclipse.bpmn2.Task;
+import java.util.List;
+import be.ugent.intec.ibcn.dbase.tooling.MonitoringPointAdder;
+import be.ugent.intec.ibcn.dbase.tooling.MonitoringPoint;
+import be.ugent.intec.ibcn.dbase.tooling.Position;
+
+rule "Process"
+    when
+        p : Process()
+    then
+        List<FlowElement> flowElements = p.getFlowElements();
+		for (FlowElement flowElement : flowElements) {
+			if (flowElement instanceof FlowNode) {
+				insert(flowElement);
+			}
+		}
+end
+
+rule "Monitoring Point"
+	when
+		MonitoringPoint( t : flowNode, p : position )
+	then
+		MonitoringPointAdder.addMonitoringPoint(t, p);
+end

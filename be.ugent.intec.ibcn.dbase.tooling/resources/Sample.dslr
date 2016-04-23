@@ -1,0 +1,17 @@
+//created on: Jun 5, 2015
+package be.ugent.intec.ibcn.dbase.tooling
+
+//list any import classes here.
+import be.ugent.intec.ibcn.dbase.tooling.DroolsTest.Message;
+
+expander Sample.dsl
+
+//declare any global variables here
+
+rule "Your First Rule"
+    when
+        There is a message
+    then
+        Print the message
+end
+

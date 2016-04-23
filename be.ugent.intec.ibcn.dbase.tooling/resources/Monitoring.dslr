@@ -1,0 +1,13 @@
+package be.ugent.intec.ibcn.dbase.tooling
+
+import be.ugent.intec.ibcn.dbase.tooling.MonitoringPoint;
+import org.eclipse.bpmn2.Task;
+
+expander Monitoring.dsl
+
+rule "Task"
+	when
+		There is a task
+	then
+		Add a monitoring point after the task
+end
